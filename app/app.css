@@ -1,0 +1,172 @@
+/* app css stylesheet */
+html, body{
+  width: 100%;
+  height: 100%;
+}
+
+.menu {
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.menu:before {
+  content: "[";
+}
+
+.menu:after {
+  content: "]";
+}
+
+.menu > li {
+  display: inline;
+}
+
+.menu > li + li:before {
+  content: "|";
+  padding-right: 0.3em;
+}
+
+
+.myheader {
+  color : red;
+  background-color: blue;
+  width : 300px;
+  height: 25px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+
+.bgMain {
+  color : red;
+  background-color: blue;
+  width : 1900px;
+  height: 1900px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.bgPIC {
+    background-image: url("WFTMul0.jpg");
+    background-repeat: no-repeat;
+    background-position: right top;
+    background-size: contain;
+    width: 100%;
+}
+
+.bgPIC2 {
+    background-image: url("image1_lovegame.jpg");
+    background-repeat: no-repeat;
+    background-position: right top;
+    background-attachment: fixed;
+}
+.submit-button{
+  height: 500px;
+  width: 500px;
+  background-color: #c2c2c2;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 25px;
+}
+
+.views{
+  width: 100%;
+  height: 100%;
+}
+
+.nba-header{
+  width: 100%;
+  height: 75px;
+  background-color: #c2c2c2;
+}
+
+
+
+.standings {
+  background-color: blue;
+}
+
+.standings2 {
+  width: 100%;
+  height: 100px;
+  background-color: blue;
+  font-size: 80px;
+  color: red;
+
+
+}
+
+.standings3 {
+  width: 100%;
+  height: 60px;
+  background-color: navy;
+  font-size: 40px;
+  color: tomato;
+  font-style: italic;
+}
+
+.standings4 {
+  width: 100%;
+  height: 600px;
+  background-color: green;
+  font-size: 40px;
+  color: yellow;
+  font-style: italic;
+}
+
+
+
+
+.rosters {
+  background-color: red;
+
+}
+
+.teamSi{
+  font-size: 55px;
+  font-style: oblique;
+
+}
+.conf{
+  font-size: 40px;
+
+}
+
+.divi{
+  font-size: 20px;
+}
+
+.overall{
+  font-size: 10px;
+  color: black;
+}
+
+.bigdiv{
+  height: 500px
+}
+
+.bigdiv h1{
+  color: yellow;
+}
+
+.fantasy {
+  font-size: 30px;
+
+
+}
+
+.fpp {
+  background-color: red;
+
+}
+
+.fb-image{
+  max-width: 350px;
+  max-height: 350px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}

@@ -1,0 +1,325 @@
+
+<!-- Header -->
+<div class="nba-header" flex="100" layout="row" layout-align="center center" ng-click="home()">
+  <h4>Cloud Assignment 1</h4>
+</div>
+
+<!-- Main page -->
+
+<div ng-hide = "show_standing">
+
+<div layout="row" class="bigdiv" ng-hide="view_teams">
+
+<!-- Left side standings -->
+  <div class="standings" flex="50" layout="column" layout-align ="start center" layout-margin>
+  <h1>View the Standings</h1>
+  <img src="standingspic.jpg" layout-align="center center" height="400px" ng-click="standingDiv()">
+  </div>
+
+<!-- Right Side Team Roster -->
+  <div class="rosters" flex="50" layout="column" layout-align="start center" layout-margin>
+    <h1>View Teams</h1>
+    <img src="teammap.png" layout-align="center center" height="400px" ng-click="changeDiv()"></a>
+  </div>
+
+</div>
+
+<div class="upload-function" ng-hide="view_teams">
+  <h4 ng-click="uploadImage()">Click Here to Upload your team picture</h4>
+  <input id="file" type="file" name="file" class="inputimg" id="nameImg" accept="image/*" style="display: none;">
+  <div layout="row" style="overflow-x: auto;" ng-if="fanImages.length > 0">
+    <img class="fb-image" ng-repeat="image in fanImages track by $index" ng-src="{{image}}">
+  </div>
+
+</div>
+
+</div>
+
+<!-- THE DIV FOR THE STANDINGS PAGE  -->
+<div class = "standings" layout="column" ng-show="show_standing">
+  <div class="standings2" layout="row" layout-align="center center">
+      NBA STANDINGS
+  </div>
+
+  <div layout="row" flex layout-margin>
+    <div class="conf-button" layout="column" flex="20">
+      <md-button class="md-raised md-primary" ng-click="easternDiv()">EASTERN CONFERENCE</md-button>
+      <md-button class="md-raised md-primary" ng-click="westernDiv()">WESTERN CONFERENCE</md-button>
+    </div>
+    <div class="view-east-standings" layout="column" flex="80" ng-if="EC">
+      <md-content>
+        <md-list>
+          <md-subheader class="md-no-sticky">EASTERN CONFERENCE STANDINGS</md-subheader>
+          <md-list-item ng-repeat="team in winsList | orderBy: 'losses'">
+            {{team.city}} {{team.name}} {{team.wins}} - {{team.losses}}
+          </md-list-item>
+        </md-list>
+      </md-content>
+    </div>
+    <div class="view-west-standings" layout="column" flex="80" ng-if="WC">
+      <md-content>
+        <md-list>
+          <md-subheader class="md-no-sticky">WESTERN CONFERENCE STANDINGS</md-subheader>
+          <md-list-item ng-repeat="team in winsList | orderBy: 'losses'">
+            {{team.city}} {{team.name}} {{team.wins}} - {{team.losses}}
+          </md-list-item>
+        </md-list>
+      </md-content>
+    </div>
+  </div>
+  </div>
+
+  <!-- THIS IS THE DIV FOR THE EASTERN CONFERENCE STANDINGS -->
+  <!-- <div class="standings3" layout="row" layout-align="start center" ng-click="easternDiv()" ng-hide="EW">
+    EASTERN CONFERENCE
+
+    <div>
+
+    </div>
+
+
+
+
+  </div> -->
+
+<!-- This is the DIV for the WESTERN CONFERENCE STANDINGS -->
+  <!-- <div class="standings4" layout="row" layout-align="start center" ng-click="westernDiv()" ng-show="EW">
+    WESTERN CONFERENCE
+
+
+
+     <md-content>
+      <md-list flex>
+        <md-subheader class="md-no-sticky">Select Team Names</md-subheader>
+        <md-list-item ng-repeat="team in westWinsList">
+
+        </md-list-item>
+      </md-list>
+    </md-content>
+
+
+
+    <div>
+      <md-list-item ng-repeat="team in westWinsList">
+        <div class="overall" layout="column">
+          <p>{{ team }}</p>
+        </div>
+      </md-list-item>
+    </div>
+
+
+  </div> -->
+
+
+
+<!--
+  <div class="views">
+    <input type='file' /><br />
+    <br />
+    <br />
+    <img id="myImg" src="#" alt="your image" />
+  </div> -->
+
+<!-- Creating teams page -->
+<div layout="row" class="testdiv" ng-show="view_teams">
+
+  <div>
+    <md-list flex>
+      <md-subheader class="md-no-sticky">Select Team Names</md-subheader>
+      <md-list-item class="md-2-line" ng-repeat="team in teamnames track by $index" ng-click="teamSelected($index)">
+        <div class="md-list-item-text" layout="column">
+          <h3>{{ team.City }} {{ team.Name }}</h3>
+          <p>{{ team.Conference }}</p>
+        </div>
+      </md-list-item>
+    </md-list>
+  </div>
+
+
+
+
+    <md-content name="pageteam" flex id=pageteam>
+
+
+      <header class="teamSi" id="welc" layout-align="center center"> WELCOME to the {{ pickTeam.City }} {{pickTeam.Name}} !</header>
+      <div id="conf2">
+        <header class="conf" id="conf1">{{ pickTeam.Conference }} Conference        [{{pickTeamStats.Wins}}-{{pickTeamStats.Losses}}]</header>
+      </div>
+      <div id=conf3>
+        <header class="divi" id="divi1">{{ pickTeam.Division }} Division</header>
+      </div>
+
+
+
+
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+      <!-- <md-toolbar md-scroll-shrink>
+    <div class="md-toolbar-tools" id="fantasy2">Fantasy Points</div>
+      </md-toolbar> -->
+
+      <!-- THIS IS THE FANTASY POINTS SECTION -->
+      <md-toolbar id="fantasy2"><header class="fantasy" id="fantasy1" flex="100" layout="row" layout-align="center center">FANTASY POINTS</header></md-toolbar>
+
+      <md-content>
+          <md-list>
+            <md-list-item class="md-3-line" flex="100">
+              <div class="md-list-item-text" flex = "100">
+                <br />
+                <br />
+                <md-toolbar layout-align="center center" class="statsT">FantasyPoints from DraftKings : {{pickTeamStats.FantasyPointsDraftKings}}</md-toolbar>
+                <br />
+                <br />
+                <md-toolbar layout-align="center center" class="statsT">FantasyPoints from FanDuel : {{pickTeamStats.FantasyPointsFanDuel}}</md-toolbar>
+                <br />
+                <br />
+                <md-toolbar layout-align="center center" class="statsT">FantasyPoints from FanDuel : {{pickTeamStats.FantasyPointsFanDuel}}</md-toolbar>
+                <br />
+                <br />
+              </div>
+
+
+              <md-divider md-inset ng-if="!$last"></md-divider>
+            </md-list-item>
+          </md-list>
+        </md-content>
+
+
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <!-- THIS IS THE OFFENSIVE NUMBERS PART  -->
+        <md-toolbar id="off1"><header class="fantasy" id="off2" flex="100" layout="row" layout-align="center center">OFFENSIVE TEAM STATS</header></md-toolbar>
+
+        <md-content>
+            <md-list>
+              <md-list-item class="md-3-line" flex="100">
+                <div class="md-list-item-text" flex="100">
+                  <md-toolbar layout-align="center center" class="statsT">TEAM POINTS : {{pickTeamStats.Points}}</md-toolbar>
+
+                  <md-toolbar layout-align="center center" class="statsT">TEAM FIELD GOAL PERCENTAGE : {{pickTeamStats.FieldGoalsPercentage}}</md-toolbar>
+
+                  <md-toolbar layout-align="center center" class="statsT">TEAM FREE THROW PERCENTAGE : {{pickTeamStats.FreeThrowsPercentage}}</md-toolbar>
+                  <md-toolbar layout-align="center center" class="statsT">TEAM 3-POINTER PERCENTAGE  : {{pickTeamStats.ThreePointersPercentage}}</md-toolbar>
+                  <md-toolbar layout-align="center center" class="statsT">TEAM 3-POINTER MADE : {{pickTeamStats.ThreePointersMade}}</md-toolbar>
+                  <md-toolbar layout-align="center center" class="statsT">TEAM TRUE SHOOTING PERCENTAGE : {{pickTeamStats.TrueShootingPercentage}}</md-toolbar>
+                  <md-toolbar layout-align="center center" class="statsT">TEAM OFFENSIVE REBOUNDS : {{pickTeamStats.OffensiveRebounds}}</md-toolbar>
+                  <md-toolbar layout-align="center center" class="statsT">TEAM ASSISTS : {{pickTeamStats.Assists}}</md-toolbar>
+                  <md-toolbar layout-align="center center" class="statsT">TEAM TURNOVERS : {{pickTeamStats.Turnovers}}</md-toolbar>
+
+                </div>
+
+
+                <md-divider md-inset ng-if="!$last"></md-divider>
+              </md-list-item>
+            </md-list>
+          </md-content>
+
+
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+
+          <!-- THIS IS THE DEFENSIVE NUMBERS PART  -->
+          <md-toolbar id="def1"><header class="fantasy" id="def2" flex="100" layout="row" layout-align="center center">DEFENSIVE TEAM STATS</header></md-toolbar>
+
+          <md-content>
+              <md-list>
+                <md-list-item class="md-3-line" flex="100">
+                  <div class="md-list-item-text" flex="100">
+
+                    <md-toolbar layout-align="center center" class="statsT">TEAM BLOCKED SHOTS : {{pickTeamStats.BlockedShots}}</md-toolbar>
+
+                    <md-toolbar layout-align="center center" class="statsT">TEAM DEFENSIVE REBOUNDS : {{pickTeamStats.DefensiveRebounds}}</md-toolbar>
+
+                    <md-toolbar layout-align="center center" class="statsT">TEAM STEALS : {{pickTeamStats.Steals}}</md-toolbar>
+                    <md-toolbar layout-align="center center" class="statsT">TEAM + / -  : {{pickTeamStats.PlusMinus}}</md-toolbar>
+                    <md-toolbar layout-align="center center" class="statsT">TEAM FOULS : {{pickTeamStats.PersonalFouls}}</md-toolbar>
+
+                  </div>
+
+
+                  <md-divider md-inset ng-if="!$last"></md-divider>
+                </md-list-item>
+              </md-list>
+            </md-content>
+
+
+
+
+  </md-content>
+
+
+
+
+</div>
+
+
+<!-- <div class=bgPIC>
+
+
+    <h1 class="myheader">WHERE THE NBA LIVES! </h1>
+
+<br />
+<br />
+    <div>
+      <input placeholder="Enter NBA TEAM here" ng-model="team" type="text">
+
+    </div>
+    <br>
+    <br />
+
+    <div>
+      <input placeholder="Enter NBA PLAYER here" ng-model="player" type="text">
+      <button type="submit">Submit Player</button>
+    </div>
+
+
+
+  <br />
+  <br />
+
+
+  <div>
+  <p class="myheader">
+    Select Team
+  </p>
+  <select>
+    <option value="Demarcus Cousins">hawks</option>
+    <option value="Anthony Davis">AD</option>
+    <option value="Karl Anthony Towns">KAT</option>
+    <option value="Kristaps">PORZINGOD</option>
+    <option value="Safari">GIANNIS</option>
+  </select>
+
+  </div>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+
+
+</div> -->
