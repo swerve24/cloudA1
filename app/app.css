@@ -170,3 +170,33 @@ html, body{
   background-repeat: no-repeat;
   background-size: contain;
 }
+
+.banner{
+  background-color: green;
+  color: yellow;
+  font-size: 20px;
+}
+
+.banner2{
+  background-color: yellow;
+  color: green;
+  font-size: 20px;
+}
+
+.title{
+
+  color: black;
+  font-size: 40px;
+  height: 80px;
+}
+
+.imageup{
+  background-color: white;
+  color: black ;
+  font-size: 20px;
+
+}
+
+.imageText{
+  align-items: center;
+}
