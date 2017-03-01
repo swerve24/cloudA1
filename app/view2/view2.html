@@ -1,19 +1,57 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+<div class="container">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+    <span class="sr-only">Toggle navigation</span>
+    <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand">PhoneBook</a>
+  </div>
+  <div id="navbar" class="navbar-collapse collapse">
+    <ul class="nav navbar-nav">
+      <li class="" ><a ng-click="logout()">SIGN OUT</a></li>
+    </ul>
 
-<div class=bgPIC>
-<p>This is the partial for view 2.</p>
-<input type="image"  id="saveform" src="image1_lovegame.jpg" alt="Submit Form" href="www.google.ca"/>
 
-<button class="bgPIC2">Click Me</button>
+  </div><!--/.navbar-collapse -->
+</div>
+</nav>
+<h3>
+  Add Contacts
+</h3>
+<div flex=50%>
+  <form ng-submit="addContact()">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Name</label>
+      <input type="text" class="form-control" id="cname" placeholder="Name" ng-model="contactName">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Phone Number</label>
+      <input type="number" class="form-control" id="cnumber" placeholder="Number" ng-model="contactPhone">
+    </div>
+    <button type="submit" class="btn btn-default">Add Contact</button>
+  </form>
+
+
+</div>
+
 <br />
 <br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
+<div class="col-med-7">
+  <h3>Your Contacts</h3>
+  <table class="table table-tablestriped">
+    <thread>
+      <tr>
+        <th>Name:  </th>
+        <th>Phone: </th>
+      </tr>
+    </thread>
+    <tbody>
+      <tr ng-repeat = "con in allContacts">
+        <td>{{ con.Name }}</td>
+        <td>{{ con.PhoneNumber }}</td>
+
+      </tr>
+    </tbody>
+  </table>
 </div>

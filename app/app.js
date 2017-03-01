@@ -8,8 +8,30 @@ angular.module('myApp', [
   'myApp.view3',
   'myApp.version',
   'ngMaterial'
-]).
-config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
+])
+
+.run(['$location', '$timeout' , function($location, $timeout){
+  firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+  console.log("User is signed in")
+  $timeout(function () {
+      $location.path('view2');
+  }, 10);
+  //$scope.$applyAsync();
+
+  } else {
+
+    console.log("User is not signed in");
+    $timeout(function () {
+        $location.path('view1');
+    }, 10);
+
+
+  }
+});
+}])
+
+.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
 
   $routeProvider.otherwise({redirectTo: '/view1'});

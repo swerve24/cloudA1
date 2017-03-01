@@ -1,164 +1,63 @@
-<!-- Header -->
-<div class="nba-header" flex="100" layout="row" layout-align="center center" ng-click="home()">
-   <h4>HOME</h4>
-</div>
-<!-- Main page -->
-<div ng-hide = "show_standing">
-   <div layout="row" class="bigdiv" ng-hide="view_teams">
-      <!-- Left side standings -->
-      <div class="standings" flex="50" layout="column" layout-align ="start center" layout-margin>
-         <h1>View the Standings</h1>
-         <img src="standingspic.jpg" layout-align="center center" height="400px" ng-click="standingDiv()">
-      </div>
-      <!-- Right Side Team Roster -->
-      <div class="rosters" flex="50" layout="column" layout-align="start center" layout-margin>
-         <h1>View Teams</h1>
-         <img src="teammap.png" layout-align="center center" height="400px" ng-click="changeDiv()"></a>
-      </div>
-   </div>
-   <div class="upload-function" ng-hide="view_teams">
-      <md-button ng-click="uploadImage()"><headers class="imageup">Click Here to Upload your TEAM PICTURE</headers></md-button>
-      <input id="file" type="file" name="file" class="inputimg" id="nameImg" accept="image/*" style="display: none;">
-      <div layout="row" style="overflow-x: auto;" ng-if="fanImages.length > 0">
-         <img class="fb-image" ng-repeat="image in fanImages track by $index" ng-src="{{image}}">
-      </div>
-   </div>
-</div>
-<!-- THE DIV FOR THE STANDINGS PAGE  -->
-<div class = "standings" layout="column" ng-show="show_standing">
-   <div class="standings2" layout="row" layout-align="center center">
-      NBA STANDINGS
-   </div>
-   <div layout="row" flex layout-margin>
-      <div class="conf-button" layout="column" flex="20">
-         <md-button class="md-raised md-primary" ng-click="easternDiv()">EASTERN CONFERENCE</md-button>
-         <md-button class="md-raised md-primary" ng-click="westernDiv()">WESTERN CONFERENCE</md-button>
-      </div>
-      <div class="view-east-standings" layout="column" flex="80" ng-if="EC">
-         <md-content>
-            <md-list>
-               <md-subheader class="md-no-sticky"><header class="title"> EASTERN CONFERENCE STANDINGS</header></md-subheader>
-               <md-list-item ng-repeat="team in winsList | orderBy: 'losses'">
+<div class="container">
+        <div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="panel panel-login">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-xs-6">
+								<a href="#" class="active" id="login-form-link">Login</a>
+							</div>
+							<div class="col-xs-6">
+								<a href="#" id="register-form-link">Register</a>
+							</div>
+						</div>
+						<hr>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-lg-12">
+								<form id="login-form" method="post" role="form" style="display: block;">
+									<div class="form-group" layout="row" layout-align="center center">
+										Enter Your Email   <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Email" ng-model="lemail">
+									</div>
+									<div class="form-group" layout="row" layout-align="center center">
+										Enter Password  <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" ng-model="lpwd">
+									</div>
+                  <h1></h1>
+									<div class="form-group" layout="row" layout-align="center center">
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+												<button type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In" ng-click="login()">Log In</button>
+											</div>
+										</div>
+									</div>
 
-                <header class="banner" flex="100">{{team.city}} {{team.name}} {{team.wins}} - {{team.losses}}</header>
-               </md-list-item>
-            </md-list>
-         </md-content>
-      </div>
-      <div class="view-west-standings" layout="column" flex="80" ng-if="WC">
-         <md-content>
-            <md-list>
-               <md-subheader class="md-no-sticky"><header class="title">WESTERN CONFERENCE STANDINGS</header></md-subheader>
-               <md-list-item ng-repeat="team in winsList | orderBy: 'losses'">
-                  <header class="banner2" flex="100">{{team.city}} {{team.name}} {{team.wins}} - {{team.losses}}</header>
-               </md-list-item>
-            </md-list>
-         </md-content>
-      </div>
-   </div>
-</div>
-<!-- Creating teams page -->
-<div layout="row" class="testdiv" ng-show="view_teams">
-   <div>
-      <md-list flex>
-         <md-subheader class="md-no-sticky">Select Team Names</md-subheader>
-         <md-list-item class="md-2-line" ng-repeat="team in teamnames track by $index" ng-click="teamSelected($index)">
-            <div class="md-list-item-text" layout="column">
-               <h3>{{ team.City }} {{ team.Name }}</h3>
-               <p>{{ team.Conference }}</p>
-            </div>
-         </md-list-item>
-      </md-list>
-   </div>
-   <md-content name="pageteam" flex id=pageteam>
-      <header class="teamSi" id="welc" layout-align="center center"> WELCOME to the {{ pickTeam.City }} {{pickTeam.Name}} !</header>
-      <div id="conf2">
-         <header class="conf" id="conf1">{{ pickTeam.Conference }} Conference        [{{pickTeamStats.Wins}}-{{pickTeamStats.Losses}}]</header>
-      </div>
-      <div id=conf3>
-         <header class="divi" id="divi1">{{ pickTeam.Division }} Division</header>
-      </div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <!-- THIS IS THE FANTASY POINTS SECTION -->
-      <md-toolbar id="fantasy2">
-         <header class="fantasy" id="fantasy1" flex="100" layout="row" layout-align="center center">FANTASY POINTS</header>
-      </md-toolbar>
-      <md-content>
-         <md-list>
-            <md-list-item class="md-3-line" flex="100">
-               <div class="md-list-item-text" flex = "100">
-                  <br />
-                  <br />
-                  <md-toolbar layout-align="center center" class="statsT">FantasyPoints from DraftKings : {{pickTeamStats.FantasyPointsDraftKings}}</md-toolbar>
-                  <br />
-                  <br />
-                  <md-toolbar layout-align="center center" class="statsT">FantasyPoints from FanDuel : {{pickTeamStats.FantasyPointsFanDuel}}</md-toolbar>
-                  <br />
-                  <br />
-                  <md-toolbar layout-align="center center" class="statsT">FantasyPoints from FanDuel : {{pickTeamStats.FantasyPointsFanDuel}}</md-toolbar>
-                  <br />
-                  <br />
-               </div>
-               <md-divider md-inset ng-if="!$last"></md-divider>
-            </md-list-item>
-         </md-list>
-      </md-content>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <!-- THIS IS THE OFFENSIVE NUMBERS PART  -->
-      <md-toolbar id="off1">
-         <header class="fantasy" id="off2" flex="100" layout="row" layout-align="center center">OFFENSIVE TEAM STATS</header>
-      </md-toolbar>
-      <md-content>
-         <md-list>
-            <md-list-item class="md-3-line" flex="100">
-               <div class="md-list-item-text" flex="100">
-                  <md-toolbar layout-align="center center" class="statsT">TEAM POINTS : {{pickTeamStats.Points}}</md-toolbar>
-                  <md-toolbar layout-align="center center" class="statsT">TEAM FIELD GOAL PERCENTAGE : {{pickTeamStats.FieldGoalsPercentage}}</md-toolbar>
-                  <md-toolbar layout-align="center center" class="statsT">TEAM FREE THROW PERCENTAGE : {{pickTeamStats.FreeThrowsPercentage}}</md-toolbar>
-                  <md-toolbar layout-align="center center" class="statsT">TEAM 3-POINTER PERCENTAGE  : {{pickTeamStats.ThreePointersPercentage}}</md-toolbar>
-                  <md-toolbar layout-align="center center" class="statsT">TEAM 3-POINTER MADE : {{pickTeamStats.ThreePointersMade}}</md-toolbar>
-                  <md-toolbar layout-align="center center" class="statsT">TEAM TRUE SHOOTING PERCENTAGE : {{pickTeamStats.TrueShootingPercentage}}</md-toolbar>
-                  <md-toolbar layout-align="center center" class="statsT">TEAM OFFENSIVE REBOUNDS : {{pickTeamStats.OffensiveRebounds}}</md-toolbar>
-                  <md-toolbar layout-align="center center" class="statsT">TEAM ASSISTS : {{pickTeamStats.Assists}}</md-toolbar>
-                  <md-toolbar layout-align="center center" class="statsT">TEAM TURNOVERS : {{pickTeamStats.Turnovers}}</md-toolbar>
-               </div>
-               <md-divider md-inset ng-if="!$last"></md-divider>
-            </md-list-item>
-         </md-list>
-      </md-content>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <!-- THIS IS THE DEFENSIVE NUMBERS PART  -->
-      <md-toolbar id="def1">
-         <header class="fantasy" id="def2" flex="100" layout="row" layout-align="center center">DEFENSIVE TEAM STATS</header>
-      </md-toolbar>
-      <md-content>
-         <md-list>
-            <md-list-item class="md-3-line" flex="100">
-               <div class="md-list-item-text" flex="100">
-                  <md-toolbar layout-align="center center" class="statsT">TEAM BLOCKED SHOTS : {{pickTeamStats.BlockedShots}}</md-toolbar>
-                  <md-toolbar layout-align="center center" class="statsT">TEAM DEFENSIVE REBOUNDS : {{pickTeamStats.DefensiveRebounds}}</md-toolbar>
-                  <md-toolbar layout-align="center center" class="statsT">TEAM STEALS : {{pickTeamStats.Steals}}</md-toolbar>
-                  <md-toolbar layout-align="center center" class="statsT">TEAM + / -  : {{pickTeamStats.PlusMinus}}</md-toolbar>
-                  <md-toolbar layout-align="center center" class="statsT">TEAM FOULS : {{pickTeamStats.PersonalFouls}}</md-toolbar>
-               </div>
-               <md-divider md-inset ng-if="!$last"></md-divider>
-            </md-list-item>
-         </md-list>
-      </md-content>
-   </md-content>
-</div>
+								</form>
+								<form id="register-form" method="post" role="form" style="display: none;">
+									<div class="form-group" layout="row" layout-align="center center">
+										Enter Username <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" ng-model="uname">
+									</div>
+									<div class="form-group" layout="row" layout-align="center center">
+										Enter Your Email <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" ng-model="uemail">
+									</div>
+                  <div class="form-group" layout="row" layout-align="center center">
+										Enter  Password <input type="password" name="pwd" id="password" tabindex="1" class="form-control" placeholder="Password" ng-model="pword">
+									</div>
+									<!-- <div class="form-group" layout="row" layout-align="center center">
+										Enter Your Password  <input type="password" name="password" id="password" tabindex="2" class="fom-control" placeholder="  Password" ng-model="pword">
+									</div> -->
+									<div class="form-group" layout="row" layout-align="center center">
+										<div class="row" layout="row" layout-align="center center">
+											<div class="col-sm-6 col-sm-offset-3">
+												<button name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" ng-click="register()">Register</button>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
